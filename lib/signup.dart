@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_chat_application/appstate.dart';
+import 'package:flutter_chat_application/homepage.dart'; // Import the HomePage widget
+import 'package:flutter_chat_application/signin.dart'; // Import the SignIn widget
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -37,6 +39,11 @@ class _SignUpState extends State<SignUp> {
         );
         // Sign up successful, update app state
         Provider.of<AppState>(context, listen: false).login();
+        // Navigate to home page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       } catch (e) {
         // Handle sign up errors
         ScaffoldMessenger.of(context).showSnackBar(
@@ -49,6 +56,19 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFF7f30fe),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SignIn()), // Navigate to SignIn page
+            );
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Container(
           child: Stack(
@@ -279,6 +299,7 @@ class _SignUpState extends State<SignUp> {
                                   child: ElevatedButton(
                                     onPressed: _signUp,
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFF7f30fe),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),

@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_application/appstate.dart';
-import 'package:flutter_chat_application/firebase_options.dart';
-import 'package:flutter_chat_application/homepage.dart';
-import 'package:flutter_chat_application/signin.dart';
-import 'package:flutter_chat_application/signup.dart';
 import 'package:provider/provider.dart';
+
+import 'appstate.dart';
+import 'firebase_options.dart';
+import 'homepage.dart';
+import 'signin.dart';
+import 'signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Consumer<AppState>(
         builder: (context, appState, _) {
-          return appState.isLoggedIn ? SignUp() : SignIn();
+          return appState.isLoggedIn ? HomePage() : SignIn();
         },
       ),
       debugShowCheckedModeBanner: false,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_application/appstate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_chat_application/homepage.dart';
 import 'package:flutter_chat_application/signup.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +32,12 @@ class _SignInState extends State<SignIn> {
           email: _emailController.text,
           password: _passwordController.text,
         );
-        // Sign in successful, update app state
+        // Sign in successful, update app state and navigate to home screen
         Provider.of<AppState>(context, listen: false).login();
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
       } catch (e) {
         // Handle sign in errors
         print('Failed to sign in: $e');
@@ -194,17 +199,17 @@ class _SignInState extends State<SignIn> {
                                   height: 50,
                                 ),
                                 Center(
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2,
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        color: Color(0xFF7f30fe),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: TextButton(
-                                        onPressed: _signIn,
+                                  child: GestureDetector(
+                                    onTap: _signIn,
+                                    child: Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xFF7f30fe),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
                                         child: Text(
                                           'Log In',
                                           style: TextStyle(

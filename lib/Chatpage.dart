@@ -25,7 +25,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff553370),
+      backgroundColor: Color(0xFF7f30fe),
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.only(top: 20, left: 20, right: 20),
